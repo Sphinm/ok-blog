@@ -17,6 +17,7 @@ function TrackChange(
   numActive: number,
   numCompleted: number
 ) {
+  "use watch";
   filtered =
     currentFilter === "all"
       ? items
@@ -41,7 +42,8 @@ function Routing(currentFilter: FilterName) {
 }
 
 export default function App() {
-  let items: TodoItems = JSON.parse(localStorage.getItem("todo-svelte")) || [];
+  let items: TodoItems = JSON.parse(localStorage.getItem("todos-svelte")) || [];
+
   let editing: number;
   let currentFilter: FilterName = "all";
   let filtered: TodoItems = [];
