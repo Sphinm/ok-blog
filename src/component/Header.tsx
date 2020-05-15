@@ -13,9 +13,10 @@ export default function Header(props: IHeaderProps) {
     }
   }
 
-  ;<header id="input">
+  ;<header>
     <h1>Todos</h1>
     <input
+      id="input"
       type="text"
       class="new-todo"
       onKeyDown={onAddTodo}
