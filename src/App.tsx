@@ -1,14 +1,7 @@
-import Header, { IAddTodoInfo } from "./component/Header";
+import Header from "./component/Header";
 import Filter from "./component/Filter";
-
-export interface ITodoItem {
-  id: string;
-  description: string;
-  completed: boolean;
-}
-
-export type TodoItems = Array<ITodoItem>;
-export type FilterName = "all" | "active" | "completed";
+import { KeyCodeEnum, CurrentStatus } from "./enum/index";
+import { ITodoItem, TodoItems, FilterName, IAddTodoInfo } from "./interface/index";
 
 function TrackChange(
   items: TodoItems,
@@ -19,9 +12,9 @@ function TrackChange(
 ) {
   "use watch";
   filtered =
-    currentFilter === "all"
+    currentFilter === CurrentStatus.ALL
       ? items
-      : currentFilter === "completed"
+      : currentFilter === CurrentStatus.COMPLETED
       ? items.filter((item) => item.completed)
       : items.filter((item) => !item.completed);
 
@@ -32,29 +25,25 @@ function TrackChange(
 
 function Routing(currentFilter: FilterName) {
   window.addEventListener("hashchange", () => {
-    currentFilter = "all";
+    currentFilter = CurrentStatus.ALL;
     if (window.location.hash === "#/active") {
-      currentFilter = "active";
+      currentFilter = CurrentStatus.ACTIVE;
     } else if (window.location.hash === "#/completed") {
-      currentFilter = "completed";
+      currentFilter = CurrentStatus.COMPLETED;
     }
   });
 }
 
 export default function App() {
   let items: TodoItems = JSON.parse(localStorage.getItem("todos-svelte")) || [];
-
-  let editing: number;
-  let currentFilter: FilterName = "all";
+  let currentFilter: FilterName = CurrentStatus.ALL;
   let filtered: TodoItems = [];
   let numActive: number;
   let numCompleted: number;
+  let editing: number;
 
   //@ts-ignore
   <TrackChange />;
-
-  const ENTER_KEY = 13;
-  const ESCAPE_KEY = 27;
 
   function addTodo(event: Svelte.KeyboardEvent<HTMLInputElement> & { detail: IAddTodoInfo }) {
     items = items.concat({
@@ -69,8 +58,8 @@ export default function App() {
   }
 
   function handleEdit(event: Svelte.KeyboardEvent<HTMLInputElement> & { target: { blur: () => void } }) {
-    if (event.which === ENTER_KEY) event.target.blur();
-    else if (event.which === ESCAPE_KEY) editing = null;
+    if (event.which === KeyCodeEnum.ENTER_KEY) event.target.blur();
+    else if (event.which === KeyCodeEnum.ESCAPE_KEY) editing = null;
   }
 
   function submit(event: Svelte.FocusEvent<HTMLInputElement>) {
@@ -117,7 +106,7 @@ export default function App() {
         <ul class="todo-list">
           <each from={filtered}>
             {(item: ITodoItem, index: number, key: string = item.id) => (
-              <li class={`${item.completed ? "completed" : ""} ${editing === index ? "editing" : ""}`}>
+              <li class={`${item.completed ? CurrentStatus.COMPLETED : ""} ${editing === index ? "editing" : ""}`}>
                 <div class="view">
                   <input class="toggle" type="checkbox" bindChecked={item.completed} />
                   <label onDoubleClick={() => (editing = index)}>{item.description}</label>
