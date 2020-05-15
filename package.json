@@ -7,13 +7,16 @@
     "start": "sirv public"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "11.0.2",
+    "@rollup/plugin-commonjs": "^11.0.0",
     "@rollup/plugin-node-resolve": "^7.0.0",
     "rollup": "^1.20.0",
     "rollup-plugin-livereload": "^1.0.0",
     "rollup-plugin-svelte": "^5.0.3",
+    "rollup-plugin-svelte-draft": "0.0.4",
     "rollup-plugin-terser": "^5.1.2",
-    "svelte": "^3.0.0"
+    "svelte": "^3.18.1",
+    "svelte-draft": "0.1.5",
+    "svelte-types": "0.0.6"
   },
   "dependencies": {
     "sirv-cli": "^0.4.4"
