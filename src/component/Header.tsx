@@ -13,8 +13,14 @@ export default function Header(props: IHeaderProps) {
     }
   }
 
-  ;<header>
+  ;<header id="input">
     <h1>Todos</h1>
-    <input class="new-todo" onKeyDown={onAddTodo} placeholder="What needs to do done?" type="text" aria-labelledby="input" />
+    <input
+      class="new-todo"
+      type="text"
+      onKeyDown={onAddTodo}
+      placeholder="What needs to do done?"
+      aria-labelledby="input"
+    />
   </header>
 }
