@@ -22,6 +22,6 @@ export default function Header(props: IHeaderProps) {
 
   <header>
     <h1>Todos</h1>
-    <input class="new-todo" onKeyDown={onAddTodo} placeholder="What needs to do done?" />
+    <input class="new-todo" onKeyDown={onAddTodo} placeholder="What needs to do done?" type="text" />
   </header>;
 }
