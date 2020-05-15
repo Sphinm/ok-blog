@@ -4,7 +4,7 @@ export enum KeyCodeEnum {
 }
 
 export enum CurrentStatus {
-  ALL = "all",
-  ACTIVE = "active",
-  COMPLETED = "completed",
+  ALL = 'all',
+  ACTIVE = 'active',
+  COMPLETED = 'completed',
 }
