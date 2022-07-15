@@ -16,7 +16,7 @@
     "rollup-plugin-svelte": "^5.0.3",
     "rollup-plugin-svelte-draft": "0.0.4",
     "rollup-plugin-terser": "^5.1.2",
-    "svelte": "^3.18.1",
+    "svelte": "^3.49.0",
     "svelte-draft": "0.1.5",
     "svelte-types": "0.0.6"
   },
